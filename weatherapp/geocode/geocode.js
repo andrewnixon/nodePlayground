@@ -1,6 +1,6 @@
 const request = require('request');
 
-var geocodeAddress = (address) => {
+var geocodeAddress = (address, callback) => {
     var encodedAddress = encodeURIComponent(address);
     
     request({
@@ -8,16 +8,17 @@ var geocodeAddress = (address) => {
         json: true
     } ,(error, response, body) => {
         if (error){
-            console.log('Unable to connect to servers.');
+            callback('Unable to connect to servers.', undefined);
         } else if (body.status === 'ZERO_RESULTS') {
-            console.log('Unable to find address');
+            callback('Unable to find address', undefined);
         } else if (body.status === 'OK') {
-            console.log(`Address: ${body.results[0].formatted_address}`);
-            console.log('===============================================');
-            console.log(`Lat: ${body.results[0].geometry.location.lat}`);
-            console.log(`Lat: ${body.results[0].geometry.location.lng}`);
+            callback(undefined, {
+                formAddress: body.results[0].formatted_address,
+                lat: body.results[0].geometry.location.lat,
+                lng: body.results[0].geometry.location.lng
+            });
         } else {
-            console.log('Unknown error.');
+            callback('Unknown error.', undefined);
         }
     });
 }

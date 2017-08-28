@@ -20,15 +20,14 @@ geocode.geocodeAddress(argv.address, (error, geoResults) => {
     if (error){
         console.log(error);
     } else {
-        console.log(JSON.stringify(geoResults, undefined, 2));
-    }
-});
-
-weather.getWeather(52.4799139, -1.9711264, (error, weatherResults) => {
-    if (error){
-        console.log(error);
-    } else {
-        console.log(JSON.stringify(weatherResults, undefined, 2));
+        console.log(`Weather for: ${geoResults.formAddress}`)
+        weather.getWeather(geoResults.lat, geoResults.lng, (error, weatherResults) => {
+            if (error){
+                console.log(error);
+            } else {
+                console.log(`It is currently ${weatherResults.temperature} C and it feels ${weatherResults.appTemperature} C.`)
+            }
+        });
     }
 });
 

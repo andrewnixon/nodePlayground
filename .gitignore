@@ -3,3 +3,4 @@ NoteApp/notes-data.json
 weatherapp/node_modules/
 node-webserver/node_modules/
 node-tests/node_modules/
+NoteApp/package-lock.json

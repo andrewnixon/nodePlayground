@@ -1,8 +1,12 @@
 const fs = require('fs'); //File system module
 const _ = require('lodash'); //lodash package
 const yargs = require('yargs');
+const chalk = require('chalk');
 
 const notes = require('./notes.js');
+
+//customise yargs version
+yargs.version('1.1.0');
 
 const titleOptions = {
     describe: 'Title of the note',
@@ -41,23 +45,22 @@ if (command === 'add'){
     console.log(`Printing ${allNotes.length} note(s).`);
 
     allNotes.forEach((note) => notes.logNote(note));
-    
+
 }  else if (command === 'read') {
     var note = notes.readNote(argv.title);
-    
+
     if (note){
         notes.logNote(note);
     } else {
         console.log(`A note with title ${argv.title} has not been found`);
     }
-    
+
 } else if (command === 'remove') {
     var status = notes.removeNote(argv.title);
     var message = status ? 'Note removed.' : 'Note not removed, does it exist?';
-    
+
     console.log(message);
 
-} else { 
+} else {
     console.log("Command not recongnised.");
 }
-    

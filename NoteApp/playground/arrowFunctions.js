@@ -1,6 +1,4 @@
-var square = (x) => {
-    return x*x;
-};
+var square = (x) => x*x;
 
 console.log(square(3));
 
@@ -14,6 +12,8 @@ var user = {
         console.log(`Hi ${this.name}`);
     }
 };
+debugger;
+
 
 user.sayHi();
 user.sayHiAlt(1,2,3);

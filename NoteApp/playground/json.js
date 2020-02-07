@@ -14,17 +14,17 @@ console.log(typeof personObj);
 console.log(personObj.name);
 console.log(personObj.age); */
 
-const fs = require('fs'); //File system module
+const fs = require('fs') // File system module
 
 var originalNote = {
-    title: 'some title',
-    body: 'Some body'
-};
+  title: 'some title',
+  body: 'Some body'
+}
 
-var originalNoteString = JSON.stringify(originalNote);
-fs.writeFileSync('notes.json', originalNoteString);
+var originalNoteString = JSON.stringify(originalNote)
+fs.writeFileSync('notes.json', originalNoteString)
 
-var noteString = fs.readFileSync('notes.json');
-var note = JSON.parse(noteString);
-console.log(note);
-console.log(typeof note);
+var noteString = fs.readFileSync('notes.json')
+var note = JSON.parse(noteString)
+console.log(note)
+console.log(typeof note)
